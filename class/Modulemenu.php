@@ -34,71 +34,65 @@ class Modulemenu
 
         $moduleDirName = \basename(\dirname(__DIR__));
         $pathname      = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/';
+        $urlModule     = \XOOPS_URL . '/modules/' . $moduleDirName . '/';
 
         require_once $pathname . 'include/common.php';
         $helper = \XoopsModules\Wgfilemanager\Helper::getInstance();
         //load necessary language files from this module
         $helper->loadLanguage('modinfo');
+        $permissionsHandler = $helper->getHandler('Permissions');
 
         $items = [];
-        $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
-        if ($currdirname == $moduleDirName) {
-            require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
-            $helper = Helper::getInstance();
-            $permissionsHandler = $helper->getHandler('Permissions');
-
-            $items = [];
+        $items[] = [
+            'name' => \_MI_WGDIARIES_SMNAME1,
+            'url'  => $urlModule . 'index.php',
+        ];
+        $items[] = [
+            'name' => \_MI_WGDIARIES_SMNAME2,
+            'url'  => $urlModule . 'items.php',
+        ];
+        if ($permissionsHandler->getPermItemsGroupView()) {
             $items[] = [
-                'name' => \_MI_WGDIARIES_SMNAME1,
-                'url'  => 'index.php',
+                'name' => \_MI_WGDIARIES_SMNAME4,
+                'url'  => $urlModule . 'items.php?op=listgroup',
             ];
+        }
+        if ($permissionsHandler->getPermItemsSubmit()) {
             $items[] = [
-                'name' => \_MI_WGDIARIES_SMNAME2,
-                'url'  => 'items.php',
+                'name' => \_MI_WGDIARIES_SMNAME3,
+                'url'  => $urlModule . 'items.php?op=new',
             ];
-            if ($permissionsHandler->getPermItemsGroupView()) {
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME4,
-                    'url'  => 'items.php?op=listgroup',
-                ];
-            }
-            if ($permissionsHandler->getPermItemsSubmit()) {
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME3,
-                    'url'  => 'items.php?op=new',
-                ];
-            }
-            if ($permissionsHandler->getPermCalPageView()) {
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME7,
-                    'url' => 'calendar.php',
-                ];
-            }
-            if ($permissionsHandler->getPermStatisticsView()) {
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME5,
-                    'url' => 'statistics.php',
-                ];
-            }
-            if ($permissionsHandler->getPermOutputsView()) {
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME6,
-                    'url' => 'outputs.php',
-                ];
-            }
-            if ($permissionsHandler->getPermItemsSubmit()) {
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME8,
-                    'url'  => 'archive.php',
-                ];
-            }
-            if ($permissionsHandler->getPermUserItemsView()) {
-                // Sub Submit
-                $items[] = [
-                    'name' => \_MI_WGDIARIES_SMNAME9,
-                    'url'  => 'useritems.php',
-                ];
-            }
+        }
+        if ($permissionsHandler->getPermCalPageView()) {
+            $items[] = [
+                'name' => \_MI_WGDIARIES_SMNAME7,
+                'url' => $urlModule . 'calendar.php',
+            ];
+        }
+        if ($permissionsHandler->getPermStatisticsView()) {
+            $items[] = [
+                'name' => \_MI_WGDIARIES_SMNAME5,
+                'url' => $urlModule . 'statistics.php',
+            ];
+        }
+        if ($permissionsHandler->getPermOutputsView()) {
+            $items[] = [
+                'name' => \_MI_WGDIARIES_SMNAME6,
+                'url' => $urlModule . 'outputs.php',
+            ];
+        }
+        if ($permissionsHandler->getPermItemsSubmit()) {
+            $items[] = [
+                'name' => \_MI_WGDIARIES_SMNAME8,
+                'url'  => $urlModule . 'archive.php',
+            ];
+        }
+        if ($permissionsHandler->getPermUserItemsView()) {
+            // Sub Submit
+            $items[] = [
+                'name' => \_MI_WGDIARIES_SMNAME9,
+                'url'  => $urlModule . 'useritems.php',
+            ];
         }
 
         return $items;
@@ -138,7 +132,7 @@ class Modulemenu
         ];
         // Sub items
         $nav_items1[] = [
-            'highlight' => \strpos($requestUri, $moduleDirName . '/items.php') > 0 && 0 === \strpos($requestUri, $moduleDirName . '/items.php?op='),
+            'highlight' => \strpos($requestUri, $moduleDirName . '/items.php') > 0 && 0 === (int)\strpos($requestUri, $moduleDirName . '/items.php?op='),
             'url' => $urlModule . 'items.php',
             'icon' => '<i class="fa fa-list-alt fa-fw fa-lg"></i>',
             'name' => \_MI_WGDIARIES_SMNAME2,
