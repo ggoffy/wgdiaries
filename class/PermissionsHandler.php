@@ -90,7 +90,13 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermGlobalEdit()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -122,12 +128,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermGlobalView()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalSubmit()) {
             return true;
         }
-        
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -158,11 +169,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermItemsSubmit()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalSubmit()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -193,11 +210,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermItemsGroupEdit()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalEdit()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -228,11 +251,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermItemsGroupView()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalView()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -266,7 +295,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermItemsEdit($itemSubmitter)
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalEdit()) {
             return true;
@@ -274,6 +303,12 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if ($this->getPermItemsGroupEdit()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -298,7 +333,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermItemsView($itemSubmitter)
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalView()) {
             return true;
@@ -306,6 +341,12 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if ($this->getPermItemsGroupView()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -329,7 +370,13 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermItemsComEdit($itemSubmitter)
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -359,11 +406,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermCalPageView()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalView()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -394,11 +447,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermOutputsView()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalView()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -429,11 +488,17 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermStatisticsView()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalView()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -464,7 +529,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermUserItemsView()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
 
         if ($this->getPermGlobalView()) {
             return true;
@@ -472,6 +537,11 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if ($this->getPermItemsGroupView()) {
             return true;
         }
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
 
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
