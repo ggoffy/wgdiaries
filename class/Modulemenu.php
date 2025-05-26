@@ -34,7 +34,6 @@ class Modulemenu
 
         $moduleDirName = \basename(\dirname(__DIR__));
         $pathname      = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/';
-        $urlModule     = \XOOPS_URL . '/modules/' . $moduleDirName . '/';
 
         require_once $pathname . 'include/common.php';
         $helper = \XoopsModules\Wgfilemanager\Helper::getInstance();
@@ -45,53 +44,53 @@ class Modulemenu
         $items = [];
         $items[] = [
             'name' => \_MI_WGDIARIES_SMNAME1,
-            'url'  => $urlModule . 'index.php',
+            'url'  => 'index.php',
         ];
         $items[] = [
             'name' => \_MI_WGDIARIES_SMNAME2,
-            'url'  => $urlModule . 'items.php',
+            'url'  => 'items.php',
         ];
         if ($permissionsHandler->getPermItemsGroupView()) {
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME4,
-                'url'  => $urlModule . 'items.php?op=listgroup',
+                'url'  => 'items.php?op=listgroup',
             ];
         }
         if ($permissionsHandler->getPermItemsSubmit()) {
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME3,
-                'url'  => $urlModule . 'items.php?op=new',
+                'url'  => 'items.php?op=new',
             ];
         }
         if ($permissionsHandler->getPermCalPageView()) {
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME7,
-                'url' => $urlModule . 'calendar.php',
+                'url' => 'calendar.php',
             ];
         }
         if ($permissionsHandler->getPermStatisticsView()) {
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME5,
-                'url' => $urlModule . 'statistics.php',
+                'url' => 'statistics.php',
             ];
         }
         if ($permissionsHandler->getPermOutputsView()) {
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME6,
-                'url' => $urlModule . 'outputs.php',
+                'url' => 'outputs.php',
             ];
         }
         if ($permissionsHandler->getPermItemsSubmit()) {
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME8,
-                'url'  => $urlModule . 'archive.php',
+                'url'  => 'archive.php',
             ];
         }
         if ($permissionsHandler->getPermUserItemsView()) {
             // Sub Submit
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME9,
-                'url'  => $urlModule . 'useritems.php',
+                'url'  => 'useritems.php',
             ];
         }
 
