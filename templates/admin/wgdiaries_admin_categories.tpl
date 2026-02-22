@@ -2,7 +2,7 @@
 <{include file='db:wgdiaries_admin_header.tpl' }>
 
 <{if isset($categories_list)}>
-    <table class='table table-bordered'>
+    <table class='outer'>
         <thead>
             <tr class='head'>
                 <th class="center"><{$smarty.const._AM_WGDIARIES_CATEGORY_ID}></th>
